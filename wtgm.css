@@ -1,0 +1,18 @@
+#playarea
+	{
+		position : relative;
+	}
+
+#playarea canvas
+	{
+		position : absolute;
+		left : 0;
+		top : 0;
+	}
+	#anilayer { z-index : 3; }
+	#hudlayer { z-index : 2; }
+	#motionlayer { z-index : 1; }
+	#stacklayer { z-index : 0; }
+
+
+
