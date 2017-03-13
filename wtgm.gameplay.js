@@ -24,9 +24,10 @@ function renderstack(layer)
 
 var blkgen = 
 {
-	blockbag : [],
-	history : ['s','z','s','z'],
-	dorder : ['j','i','z','l','o','t','s'],
+	//block order is i, t, l, j, s, z, o for 1 to 7.
+	blockbag : [1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4,5,6,7],
+	history : [5, 6, 5, 6],
+	dorder : [4, 1, 6, 3, 7, 2, 5],
 
 	generate : function()
 	{
@@ -35,9 +36,6 @@ var blkgen =
 
 	init : function()
 	{
-		for(var i = 0; i < 4; i++)
-			for(var j = 0; j < 7; j++);
-				this.blockbag.push(this.dorder[j]);
 		for(var i = 34; i >= 0; i--)
 		{
 			var j = Math.floor(Math.random() * 35);
@@ -49,14 +47,16 @@ var blkgen =
 		{
 			this.generate = function()
 			{
+				var piece;
+				var a;
 				for(var i = 0; i < 6; i++)
 				{
-					var a = Math.floor(Math.random() * 35);
-					var piece = this.blockbag[a];
-					if(piece != history[0] || piece != history[1] || piece != history[2] 
-						|| piece != history[3])
-						break
+					a = Math.floor(Math.random() * 35);
+					piece = this.blockbag[a];
 					this.blockbag[a] = this.dorder[0];
+					if(piece != this.history[0] && piece != this.history[1] &&
+						piece != this.history[2] && piece != this.history[3])
+						break;
 				}
 				this.dorder.splice(this.dorder.lastIndexOf(piece), 1);
 				this.dorder.push(piece);
@@ -64,53 +64,22 @@ var blkgen =
 				this.history.push(piece);
 				return piece;
 			};
-			return ['j', 'i', 'l', 't'][Math.floor(Math.random()*5)];
+			this.history.shift();
+			var piece =  [1, 2, 3, 4][Math.floor(Math.random()*4)];
+			this.history.push(piece);
+			return piece;
 		};
 	}
 }
 
-/*
-function blkgen()
+function rngtest()
 {
-	if(init)
-	{
-		for(var i = 0; i < 6; i++)
-		{
-			var a = Math.floor(Math.random() * 35);
-			var piece = this.blockbag[a];
-			if(piece != history[0] || piece != history[1] || piece != history[2] 
-				|| piece != history[3])
-				break
-			bag[a] = dorder[0];
-		}
-		this.dorder.splice(this.dorder.lastIndexOf(piece), 1);
-		this.dorder.push(piece);
-		this.history.shift();
-		this.history.push(piece);
-		return piece;
-	}
-	else
-	{
-		this.blockbag = [];
-		this.history = ['s','z','s','z'];
-		this.dorder = ['j','i','z','l','o','t','s'];
-		this.count = [0, 0, 0, 0, 0, 0, 0]
-		for(var i = 0; i < 4; i++)
-			for(var j = 0; j < 7; j++);
-				this.blockbag.push(gen.dorder[j]);
-		for(var i = 35; i > 0; i++)
-		{
-			var j = Math.floor(Math.random() * 35);
-			var temp = gen.blockbag[i];
-			this.blockbag[i] = gen.blockbag[j];
-			this.blockbag[j] = temp;
-		}
-		init = true;
-		return ['j', 'i', 'l', 't'][Math.floor(Math.random()*5)];
-	}
+	var a = "";
+	for(var i = 0;i < 1000; i++)
+		a = a.concat([0,"i","t","l","j","s","z","o"][blkgen.generate()]);
+	console.log(a);
+
 }
-blkgen.init = false;
-*/
 
 drawborder(hl);
 /*renderblock(24, 96, 2, 2, ml);
