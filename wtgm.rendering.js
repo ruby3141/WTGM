@@ -26,11 +26,11 @@ function drawborder(layer)
 }
 
 //color : i = 1, t = 2, l = 3 ,j = 4, s = 5, z = 6, o = 7, none = 0
-//type : 1 for mini size, 2 for normal size, 4 for big size.(for staff role of sirase)
-function renderblock(x, y, type, color, layer)
+//size : 1 for mini size, 2 for normal size, 4 for big size.(for staff role of sirase)
+function renderblock(x, y, size, color, layer)
 {
 	var ctx = layer.getContext("2d");
-	var grd = ctx.createLinearGradient(x,y,x,y+(type*12));
+	var grd = ctx.createLinearGradient(x,y,x,y+(size*12));
 	switch(color)
 	{
 		case 0:
@@ -54,8 +54,8 @@ function renderblock(x, y, type, color, layer)
 	}
 	grd.addColorStop(0, cs);
 	grd.addColorStop(1, ce);
-	var sm = (type*12);
-	var pm = (type/2);
+	var sm = (size*12);
+	var pm = (size/2);
 	ctx.beginPath();
 	ctx.fillStyle = grd;
 	ctx.rect(x, y, sm, sm);
@@ -64,10 +64,10 @@ function renderblock(x, y, type, color, layer)
 	grd = ctx.createLinearGradient(x,y,x+sm,y+sm);
 	grd.addColorStop(0.49, "rgba(255,255,255,0.5)");
 	grd.addColorStop(0.51, "rgba(0,0,0,0.5)");
-	ctx.lineWidth = type;
+	ctx.lineWidth = size;
 	ctx.beginPath();
 	ctx.strokeStyle = grd;
-	ctx.rect(x + pm, y + pm, (type * 11), (type * 11));
+	ctx.rect(x + pm, y + pm, (size * 11), (size * 11));
 	ctx.stroke();
 	ctx.closePath();
 }

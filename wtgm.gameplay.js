@@ -7,11 +7,11 @@ var ml = document.getElementById("motionlayer");
 var hl = document.getElementById("hudlayer");
 var al = document.getElementById("anilayer");
 var blockstack = [];
-for(var i = 0; i < 21; i++)
-{
-	blockstack[i] = [];
-	for(var j = 0; j < 10; j++) blockstack[i][j] = 0;
-}
+	for(var i = 0; i < 21; i++)
+	{
+		blockstack[i] = [];
+		for(var j = 0; j < 10; j++) blockstack[i][j] = 0;
+	}
 
 function renderstack(layer)
 {
@@ -70,15 +70,6 @@ var blkgen =
 			return piece;
 		};
 	}
-}
-
-function rngtest()
-{
-	var a = "";
-	for(var i = 0;i < 1000; i++)
-		a = a.concat([0,"i","t","l","j","s","z","o"][blkgen.generate()]);
-	console.log(a);
-
 }
 
 drawborder(hl);
