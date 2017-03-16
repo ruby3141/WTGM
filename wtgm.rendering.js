@@ -1,3 +1,8 @@
+var sl = document.getElementById("stacklayer");
+var ml = document.getElementById("motionlayer");
+var hl = document.getElementById("hudlayer");
+var al = document.getElementById("anilayer");
+
 function drawborder(layer)
 {
 	var ctx = layer.getContext("2d");

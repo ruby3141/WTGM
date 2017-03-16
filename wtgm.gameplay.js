@@ -2,10 +2,6 @@
 //this js file requires "wtgm.render.js" to be already loaded.//
 ////////////////////////////////////////////////////////////////
 
-var sl = document.getElementById("stacklayer");
-var ml = document.getElementById("motionlayer");
-var hl = document.getElementById("hudlayer");
-var al = document.getElementById("anilayer");
 var blockstack = [];
 	for(var i = 0; i < 21; i++)
 	{
