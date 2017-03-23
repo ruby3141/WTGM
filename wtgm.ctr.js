@@ -1,22 +1,6 @@
-////////////////////////////////////////////////////////////////
-//this js file requires "wtgm.render.js" to be already loaded.//
-////////////////////////////////////////////////////////////////
-
-var blockstack = [];
-	for(var i = 0; i < 21; i++)
-	{
-		blockstack[i] = [];
-		for(var j = 0; j < 10; j++) blockstack[i][j] = 0;
-	}
-
-function renderstack(layer)
-{
-	for(var i = 0; i < 21; i++)
-		for(var j = 0; j < 10; j ++)
-		{
-			renderblock(240-(24*j), 552-(24*i), 2, blockstack[i][j], layer);
-		}
-}
+//////////////////////////////////////////////////////////////
+//this js file requires "wtgm.data.js" to be already loaded.//
+//////////////////////////////////////////////////////////////
 
 var blkgen = 
 {
@@ -68,9 +52,16 @@ var blkgen =
 	}
 }
 
-drawborder(hl);
-/*renderblock(24, 96, 2, 2, ml);
-renderblock(24, 552, 2, 2, ml);
-renderblock(240, 96, 2, 2, ml);
-renderblock(240, 552, 2, 2, ml);
-*/
+function movetest(type, dir, x, y)
+{
+	var arraysize = getarrsize(size);
+	for(var i = 0; i < arraysize; i++)
+		for(var j = 0; j < arraysize; j++)
+			if(pieceshape[j][i] != 0 && blockstack[x-j][y-i] != 0) return false;
+	return true;
+}
+
+function rotate(rot) //a button = 1, b button = -1;
+{
+	//notimplemented
+}
