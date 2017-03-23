@@ -7,17 +7,28 @@ const pieceshape = //pieceshape[type][dir]
 	[[[0,0,0],[0,5,5],[5,5,0]],[[5,0,0],[5,5,0],[0,5,0]]],
 	[[[0,0,0],[6,6,0],[0,6,6]],[[0,0,6],[0,6,6],[0,6,0]]],[[[7,7],[7,7]]]];
 
+function getpsize(type)
+{
+	switch(type)
+	{
+		case 1: return 4;
+		case 7: return 2;
+		default: return 3;
+	}
+};
+
 let data = 
 {
 	blockstack : 
 		[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
 
-	currentpiece : //type, dir, xpos, height
+	cpiece : //current piece
 	{
-		type : 0,// i, t, l, j, s, z, o for 1 to 7
+		//type, dir, pos, height
+		type : 0, // i, t, l,j, s, z, o for 1 to 7
 		dir : 0, // how many a presses to get to the direction
-		xpos : 0,
-		height : 0 //this value is not pixel value, but array index.
+		pos : 0,
+		height : 0
 	},
 
 	init()

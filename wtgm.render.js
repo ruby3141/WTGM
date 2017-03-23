@@ -1,14 +1,13 @@
 ////////////////////////////////////////////////////////////
 //this js file requires wtgm.data.js to be already loaded.//
 ////////////////////////////////////////////////////////////
+sl = document.getElementById("stacklayer");
+ml = document.getElementById("motionlayer");
+hl = document.getElementById("hudlayer");
+al = document.getElementById("anilayer");
 
 var renderer = 
 {
-	sl : document.getElementById("stacklayer"),
-	ml : document.getElementById("motionlayer"),
-	hl : document.getElementById("hudlayer"),
-	al : document.getElementById("anilayer"),
-
 	drawborder()
 	{
 		var ctx = hl.getContext("2d");
@@ -38,9 +37,9 @@ var renderer =
 
 	//color : i = 1, t = 2, l = 3 ,j = 4, s = 5, z = 6, o = 7, none = 0
 	//size : 1 for mini size, 2 for normal size, 4 for big size.(for staff role of sirase)
-	renderblock(x, y, size, color)
+	renderblock(x, y, size, color, layer)
 	{
-		var ctx = ml.getContext("2d");
+		var ctx = layer.getContext("2d");
 		var grd = ctx.createLinearGradient(x,y,x,y+(size*12));
 		switch(color)
 		{
@@ -88,16 +87,23 @@ var renderer =
 		for(var i = 0; i < 21; i++)
 			for(var j = 0; j < 10; j ++)
 			{
-				renderblock(240-(24*j), 552-(24*i), 2, data.blockstack[i][j], sl);
+				this.renderblock(24*(j+1), 552-(24*i), 2, data.blockstack[i][j], sl);
 			}
 	},
 
 	renderpiece(piece, arrsize, size, x, y, layer)
 	{
 		var sm = size*12;
-		for(var i = 0; i < arraysize; i++)
-			for(var j = 0; j < arraysize; j++)
-				renderblock(x+(j*sm), y+(i*sm), size, piece[j][i], layer);
+		for(var i = 0; i < arrsize; i++)
+			for(var j = 0; j < arrsize; j++)
+				this.renderblock(x+(j*sm), y+(i*sm), size, piece[i][j], layer);
+	},
+
+	rendcp(layer)
+	{
+		var cp = data.cpiece;
+		this.renderpiece(pieceshape[cp.type][cp.dir], getpsize(cp.type), 2, //
+			24*(cp.pos+1), 552-(24*cp.height), layer);
 	}
 }
 /*renderblock(24, 96, 2, 2, ml);
