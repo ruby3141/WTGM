@@ -1,4 +1,7 @@
-//will be wtgm.render.js
+////////////////////////////////////////////////////////////
+//this js file requires wtgm.data.js to be already loaded.//
+////////////////////////////////////////////////////////////
+
 var renderer = 
 {
 	sl : document.getElementById("stacklayer"),
@@ -80,12 +83,12 @@ var renderer =
 		ctx.closePath();
 	},
 
-	renderstack(stack, layer)
+	renderstack()
 	{
 		for(var i = 0; i < 21; i++)
 			for(var j = 0; j < 10; j ++)
 			{
-				renderblock(240-(24*j), 552-(24*i), 2, stack[i][j], layer);
+				renderblock(240-(24*j), 552-(24*i), 2, data.blockstack[i][j], sl);
 			}
 	},
 
@@ -94,7 +97,7 @@ var renderer =
 		var sm = size*12;
 		for(var i = 0; i < arraysize; i++)
 			for(var j = 0; j < arraysize; j++)
-				renderblock(x+(j*sm),y+(i*sm),size,piece[j][i],layer);
+				renderblock(x+(j*sm), y+(i*sm), size, piece[j][i], layer);
 	}
 }
 /*renderblock(24, 96, 2, 2, ml);
